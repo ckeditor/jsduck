@@ -28,6 +28,8 @@ module JsDuck
       @members_index = MembersIndex.new(self)
 
       @relations = nil
+
+      fix_events_params()
     end
 
     # Returns the internal doc object.
@@ -181,6 +183,22 @@ module JsDuck
     # Returns all local members of class
     def all_local_members
       @doc[:members]
+    end
+
+    # Rewrite all events' arguments to CKEDITOR.eventInfo properties.
+    def fix_events_params()
+      @doc[:members].select{|member| member[:tagname] == :event}.each do |event|
+        event[:params] = [
+          {
+            :type => "CKEDITOR.eventInfo",
+            :name => "evt",
+            :doc => "",
+            :optional => false,
+            :default => nil,
+            :properties => event[:params]
+          }
+        ]
+      end
     end
 
     # Static methods
