@@ -37,7 +37,6 @@ Ext.define('Docs.view.GroupTree', {
             if (item.items) {
                 return {
                     text: item.title,
-                    expanded: true,
                     iconCls: 'icon-pkg',
                     children: this.buildTree(item.items)
                 };
