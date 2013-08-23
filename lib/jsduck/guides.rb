@@ -96,7 +96,7 @@ module JsDuck
       # Ensure the guide has an icon
       fix_icon(out_dir)
 
-      Util::Json.write_jsonp(out_dir+"/README.js", guide["name"], {:guide => guide[:html], :title => guide["title"]})
+      Util::Json.write_jsonp(out_dir+"/README.js", guide["name"], {:guide => guide[:html], :title => guide["title"], :meta_description => guide["meta_description"], :meta_keywords => guide["meta_keywords"]})
     end
 
     # Turns guide URL into full path.
