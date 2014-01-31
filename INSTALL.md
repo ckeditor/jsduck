@@ -39,3 +39,13 @@ Full guide can be found in [JSDuck's wiki](https://github.com/ckeditor/jsduck/wi
   1. After making any change, first commit code changes (may be more than one commit), then bump JSDuck version, build new gem package, remove old from repository and add new one, then commit rebuilt package.
 1. Testing:
   1. For testing purposes you can use script available in `bin/ckeditor-jsduck` instead of constantly installing rebuilt gem package. You need to temporarily modify `build.sh` script from CKEditor documentation repository to use this file.
+
+# Customizations
+
+List of applied customizations:
+
+1. Gem name changed to `ckeditor-jsduck` to avoid conflicts.
+2. Event's arguments are automatically wrapped with eventInfo object.
+3. Guides tree list is kept collapsed by default.
+4. Improved SEO by including meta tags in guides. They are configurable through `guides.json`.
+5. Added these instructions.
