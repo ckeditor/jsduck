@@ -2,7 +2,7 @@
 
 1. The `master` branch always refers to [official JSDuck's `master`](https://github.com/senchalabs/jsduck) branch. It's a development branch.
 1. The `stable` branch contains latest stable official JSDuck's release plus CKEditor's modifications. Gem packages should be built from this branch.
-1. The 'ckeditor-customizations' branch contains all modifications made by CKEditor and can be used while updating JSDuck to reapply those changes.
+1. The `ckeditor-customizations` branch contains all modifications made by CKEditor and can be used while updating JSDuck to reapply those changes.
 
 # Building gem package
 
