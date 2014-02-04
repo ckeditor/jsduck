@@ -1,112 +1,64 @@
-![JSDuck](https://raw.github.com/senchalabs/jsduck/master/opt/jsduck-logo-dark.png)
+# CKEditor JSDuck Gem
+
+This repository is used for storing CKEditor modifications for [JSDuck](https://github.com/senchalabs/jsduck), API documentation framework that is used for the developer documentation of CKEditor 4. 
+
+## Repository
+
+1. The `master` branch always refers to the [official JSDuck `master`](https://github.com/senchalabs/jsduck) branch. It's a development branch.
+1. The `stable` branch contains the latest stable official JSDuck release plus CKEditor's modifications. Gem packages should be built from this branch.
+1. The `ckeditor-customizations` branch contains all modifications made by the CKEditor team and can be used while updating JSDuck to reapply those changes.
+
+## Building the CKEditor JSDuck Gem
+
+Full guide can be found in the [JSDuck wiki](https://github.com/ckeditor/jsduck/wiki/Hacking).
+
+1. `> sudo gem install rake rspec compass json rdiscount parallel dimensions rkelly-remix`
+1. `> git clone git@github.com:ckeditor/jsduck.git`
+1. `> cd jsduck`
+1. `> git co stable`
+1. `> rake configure`
+1. `> rake` (should be 100% green)
+1. `> rake ext4` (when executed for the first time gives a lot of warnings &mdash; you can repeat it)
+1. To generate the gem you first need to have a JSDuck-built documentation application available at `http://localhost/docs/`:
+
+  `> ln -s path/to/jsduck/output docs` (from localhost's root)
+
+1. `> rake bump["0.0.2"]` (update version number if you made any changes)
+1. `> rake gem`
+1. If you want to commit a new version, remove the old gem and add a new one to the repository.
+
+## Building the CKEditor Documentation
+
+Read the instructions in the [`ckeditor-docs`](https://github.com/ckeditor/ckeditor-docs) repository.
+
+## Modifying JSDuck
+
+1. Rebuilding the gem package:
+  1. If you modified JSDuck version (merged upstream's `master`), make sure to run all `rake` commands starting from `rake configure` in step 5 above.
+  1. If you only modified JSDuck code within a previously built version, it's enough to build the gem package.
+1. Commiting changes:
+  1. All code modifications should be done in the `ckeditor-customizations` branch, so that they would be easily reapplicable in the future.
+  1. After making any changes, first commit code changes (this may be more than one commit), then bump the JSDuck version, build a new gem package, remove the old one from the repository and add the new one, then commit the rebuilt package.
+1. Testing:
+  
+  For testing purposes you can use the script available in `bin/ckeditor-jsduck` instead of constantly installing the rebuilt gem package. You need to temporarily modify the [`build.sh`](https://github.com/ckeditor/ckeditor-docs/blob/master/build.sh) script from the CKEditor documentation repository to use this file.
+
+## Customizations
+
+List of applied customizations:
+
+1. Gem name changed to `ckeditor-jsduck` to avoid conflicts.
+2. Event arguments are automatically wrapped with the `eventInfo` object.
+3. Developer's Guide table of contents tree is kept collapsed by default.
+4. Improved SEO by including meta tags in the Developer's Guide. They are configurable through the `guides.json` file.
+5. Added these instructions.
+
 ===================================================================================
+CKEditor documentation uses [JSDuck](https://github.com/senchalabs/jsduck), API documentation generator for Sencha JavaScript frameworks.
 
-[![Build Status](https://travis-ci.org/senchalabs/jsduck.png)](https://travis-ci.org/senchalabs/jsduck)
+![JSDuck](https://raw.github.com/senchalabs/jsduck/master/opt/jsduck-logo-dark.png)
 
-API documentation generator for Sencha JavaScript frameworks.
-
-JSDuck aims to be a better documentation generator for [Ext JS][] than
-the old [ext-doc][] was. It is used by Sencha to document [Ext JS
-4][ext4-docs], [Sencha Touch][touch2-docs] and [several other][other-docs]
-products.
-
-The highlights of JSDuck are [Markdown][] support and keeping you DRY
-by inferring a lot of information from code.  Read the
-[documentation][] for full overview.
-
-**New to JSDuck?** Watch [introductory talk by Nick Poulden][video]:
-
-[<img src="http://b.vimeocdn.com/ts/227/178/227178682_200.jpg" alt="SenchaCon 2011 JSDuck talk" />][video]
-
-[Ext JS]: http://www.sencha.com/products/js/
-[ext-doc]: http://code.google.com/p/ext-doc/
-[Markdown]: http://daringfireball.net/projects/markdown/
-[ext4-docs]: http://docs.sencha.com/extjs/
-[touch2-docs]: http://docs.sencha.com/touch/
-[other-docs]: http://docs.sencha.com/
-[documentation]: https://github.com/senchalabs/jsduck/wiki
-[video]: http://vimeo.com/33465319
-
-Getting it
-----------
-
-Standard rubygems install should do:
-
-    $ [sudo] gem install jsduck
-
-Or download the [Windows binary][winbin]. When you run into problems,
-see the [installation guide][].
-
-[winbin]: https://github.com/senchalabs/jsduck/releases
-[installation guide]: https://github.com/senchalabs/jsduck/wiki/Installation
-
-Usage
------
-
-For the simplest test-run just use the `--builtin-classes` option to
-write documentation for JavaScript builtin classes like Array, String
-and Object into `docs` directory:
-
-    $ jsduck --builtin-classes --output docs
-
-To generate docs for [Ext JS 4][] add path to the corresponding src/ dir:
-
-    $ jsduck ext-4.2.1/src --output docs
-
-And to create docs for your own Ext JS project, list the directory
-with your files in addition to the Ext JS source files (this way the
-docs of your classes will list all the properties and methods they
-inherit from Ext JS classes):
-
-    $ jsduck ext-4.2.1/src my-project/js --output docs
-
-Unfortunately the above will throw lots of warnings at you, as
-building the full Ext JS docs requires lots of additional settings.
-For start you might want to simply ignore all these warnings
-originating from Ext JS source:
-
-    $ jsduck ext-4.2.1/src my-project/js --output docs \
-             --warnings=-all:ext-4.2.1/src
-
-But see the [Usage guide][] for more information on building Ext JS 4
-docs.
-
-[Ext JS 4]: http://www.sencha.com/products/extjs/
-[Usage guide]: https://github.com/senchalabs/jsduck/wiki/Usage
-
-
-Documenting your code
----------------------
-
-Read the [documentation][] and take a look at [example.js][example].
-
-[example]: https://github.com/senchalabs/jsduck/blob/master/opt/example.js
-
-
-Hacking it
-----------
-
-See [Hacking guide](https://github.com/senchalabs/jsduck/wiki/Hacking) in wiki.
-
-
-Who's using JSDuck?
--------------------
-
-- Appcelerator [Titanium SDK](http://docs.appcelerator.com/titanium/2.0/index.html)
-- AT&T [API Platform SDK for HTML5](https://code-api-att.com/SenchaSdk20Drop23Docs/)
-- Bryntum [Siesta unit testing framework](http://www.bryntum.com/products/siesta/docs/)
-- [CKEditor](http://docs.ckeditor.com)
-- [GeoExt 2](https://github.com/geoext/geoext2)
-- Rally Software [Rally App SDK](https://prod.help.rallydev.com/apps/2.0rc1/doc/)
-- Wikimedia Foundation [Mediawiki](https://doc.wikimedia.org/mediawiki-core/master/js/)
-  and [VisualEditor](https://doc.wikimedia.org/VisualEditor/master/)
-- [Sencha](http://docs.sencha.com) - obviously :)
-
-These are some that we know of. Want your project listed here? Drop us a line.
-
-
-Copying
--------
+## Copying
 
 JSDuck is distributed under the terms of the GNU General Public
 License version 3.
@@ -144,17 +96,6 @@ Many thanks goes also to those who have most eagerly reported bugs:
 There are lots of others I haven't named here, who have provided their
 input.
 
+## JSDuck Changelog
 
-Changelog
----------
-
-See [the Releases page](https://github.com/senchalabs/jsduck/Releases).
-
-
-More questions?
----------------
-
-Feel free to [post an issue][issues], but read the [FAQ][] first.
-
-[issues]: https://github.com/senchalabs/jsduck/issues
-[FAQ]: https://github.com/senchalabs/jsduck/wiki/FAQ
+See [the Releases page](https://github.com/senchalabs/jsduck/releases).
