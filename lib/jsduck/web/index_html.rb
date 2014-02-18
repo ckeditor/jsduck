@@ -44,6 +44,7 @@ module JsDuck
           "{news}" => @assets.news.to_html("display:none"),
           "{guides}" => @assets.guides.to_html("display:none"),
           "{head_html}" => @opts.head_html,
+          "{head_html_common}" => @opts.head_html_common,
           "{body_html}" => @opts.body_html,
         })
       end
@@ -52,6 +53,7 @@ module JsDuck
         write_template(in_file, out_file, {
           "{title}" => @opts.title,
           "{header}" => @opts.header,
+          "{head_html_common}" => @opts.head_html_common,
           "{css_path}" => File.basename(@paths[:css]),
         })
       end
@@ -63,6 +65,7 @@ module JsDuck
         write_template(in_file, out_file, {
           "{title}" => @opts.title,
           "{header}" => @opts.header,
+          "{head_html_common}" => @opts.head_html_common,
           "{categories}" => categories ? "<h1>API Documentation</h1> #{categories}" : "",
           "{guides}" => guides ? "<h1>Guides</h1> #{guides}" : "",
           "{css_path}" => File.basename(@paths[:css]),
