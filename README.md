@@ -1,6 +1,6 @@
 # CKEditor JSDuck Gem
 
-This repository is used for storing CKEditor modifications for [JSDuck](https://github.com/senchalabs/jsduck), API documentation framework that is used for the developer documentation of CKEditor 4. 
+This repository is used for storing CKEditor modifications for [JSDuck](https://github.com/senchalabs/jsduck), API documentation framework that is used for the developer documentation of CKEditor 4.
 
 ## Repository
 
@@ -17,7 +17,6 @@ Full guide can be found in the [JSDuck wiki](https://github.com/ckeditor/jsduck/
 1. `> cd jsduck`
 1. `> git co stable`
 1. `> rake configure`
-1. `> rake` (should be 100% green)
 1. `> rake ext4` (when executed for the first time gives a lot of warnings &mdash; you can repeat it)
 1. To generate the gem you first need to have a JSDuck-built documentation application available at `http://localhost/docs/`:
 
@@ -34,14 +33,16 @@ Read the instructions in the [`ckeditor-docs`](https://github.com/ckeditor/ckedi
 ## Modifying JSDuck
 
 1. Rebuilding the gem package:
-  1. If you modified JSDuck version (merged upstream's `master`), make sure to run all `rake` commands starting from `rake configure` in step 5 above.
-  1. If you only modified JSDuck code within a previously built version, it's enough to build the gem package.
+  1. If you modified JSDuck version (merged upstream's `master`), make sure to run all `rake` tasks starting from `rake configure` in step 5 above.
+  1. If you only modified JSDuck code within a previously built version, it's enough to build the gem package, unless templates have been modified.
 1. Commiting changes:
   1. All code modifications should be done in the `ckeditor-customizations` branch, so that they would be easily reapplicable in the future.
   1. After making any changes, first commit code changes (this may be more than one commit), then bump the JSDuck version, build a new gem package, remove the old one from the repository and add the new one, then commit the rebuilt package.
 1. Testing:
-  
+
   For testing purposes you can use the script available in `bin/ckeditor-jsduck` instead of constantly installing the rebuilt gem package. You need to temporarily modify the [`build.sh`](https://github.com/ckeditor/ckeditor-docs/blob/master/build.sh) script from the CKEditor documentation repository to use this file.
+
+  If you modified JSDuck templates, then you need to run rake tasks up to `rake gem` (excluding bumping up the version of course), otherwise `bin/ckeditor-jsduck` will still be using old minified templates.
 
 ## Customizations
 
