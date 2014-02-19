@@ -25,6 +25,7 @@ module JsDuck
     attr_accessor :header
     attr_accessor :footer
     attr_accessor :head_html
+    attr_accessor :head_html_common
     attr_accessor :body_html
     attr_accessor :css
     attr_accessor :message
@@ -107,6 +108,7 @@ module JsDuck
       @header = "<strong>Documentation</strong> JSDuck"
       @footer = format_footer("Generated on {DATE} by {JSDUCK} {VERSION}.")
       @head_html = ""
+      @head_html_common = ""
       @body_html = ""
       @css = ""
       @message = ""
@@ -333,6 +335,19 @@ module JsDuck
           "This option can be used repeatedly to append several",
           "things to the header.") do |html|
           @head_html += maybe_file(html)
+        end
+
+        opts.on('--head-html-common=HTML',
+          "HTML for the <head> section used in all templates.",
+          "",
+          "Useful for adding extra <style> and other tags.",
+          "",
+          "Also a name of an HTML file can be passed.",
+          "Then the contents of that file will be read in.",
+          "",
+          "This option can be used repeatedly to append several",
+          "things to the header.") do |html|
+          @head_html_common += maybe_file(html)
         end
 
         opts.on('--body-html=HTML',
