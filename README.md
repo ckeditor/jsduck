@@ -48,6 +48,12 @@ Read the instructions in the [`ckeditor-docs`](https://github.com/ckeditor/ckedi
 
 List of applied customizations:
 
+### 0.0.2
+
+1. Introduced `--head-html-common` config option which makes possible to extend `<head>` of **all** templates.
+
+### 0.0.1
+
 1. Gem name changed to `ckeditor-jsduck` to avoid conflicts.
 2. Event arguments are automatically wrapped with the `eventInfo` object.
 3. Developer's Guide table of contents tree is kept collapsed by default.
