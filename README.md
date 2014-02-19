@@ -12,6 +12,7 @@ This repository is used for storing CKEditor modifications for [JSDuck](https://
 
 Full guide can be found in the [JSDuck wiki](https://github.com/ckeditor/jsduck/wiki/Hacking).
 
+1. Install [Sencha SDK Tools](http://www.sencha.com/products/sdk-tools/download/) for your OS.
 1. `> sudo gem install rake rspec compass json rdiscount parallel dimensions rkelly-remix`
 1. `> git clone git@github.com:ckeditor/jsduck.git`
 1. `> cd jsduck`
