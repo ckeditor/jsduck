@@ -49,6 +49,10 @@ Read the instructions in the [`ckeditor-docs`](https://github.com/ckeditor/ckedi
 
 List of applied customizations:
 
+### 0.0.3
+
+1. Fixed canonical URL for documentation loaded from CDN.
+
 ### 0.0.2
 
 1. Introduced `--head-html-common` config option which makes possible to extend `<head>` of **all** templates.
