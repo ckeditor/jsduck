@@ -185,12 +185,12 @@ module JsDuck
       @doc[:members]
     end
 
-    # Rewrite all events' arguments to CKEDITOR.eventInfo properties.
+    # Rewrite all events' arguments to CKFinder.Event.EventInfo properties.
     def fix_events_params()
       @doc[:members].select{|member| member[:tagname] == :event}.each do |event|
         event[:params] = [
           {
-            :type => "CKEDITOR.eventInfo",
+            :type => "CKFinder.Event.EventInfo",
             :name => "evt",
             :doc => "",
             :optional => false,
@@ -206,7 +206,8 @@ module JsDuck
     # Generates member :id from member hash
     def self.member_id(m)
       # Sanitize $ in member names with something safer
-      name = m[:name].gsub(/\$/, 'S-')
+      # Sanitize : in member names for event names
+      name = m[:name].gsub(/\$/, 'S-').gsub(':', '_')
       "#{m[:static] ? 'static-' : ''}#{m[:tagname]}-#{name}"
     end
 

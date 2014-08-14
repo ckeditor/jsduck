@@ -17,7 +17,8 @@ module JsDuck::Tag
     def parse_doc(p, pos)
       {
         :tagname => :event,
-        :name => p.ident,
+        # support for event names with colon like 'app:started'
+        :name => p.ident.gsub('_EVTCOLON_', ':'),
       }
     end
 
