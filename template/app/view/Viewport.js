@@ -76,7 +76,7 @@ Ext.define('Docs.view.Viewport', {
                         id: 'treecontainer',
                         border: 1,
                         bodyPadding: '10 9 4 9',
-                        width: 240
+                        width: 280
                     },
                     {
                         region: 'center',
