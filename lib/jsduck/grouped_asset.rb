@@ -42,6 +42,7 @@ module JsDuck
         if item["items"]
           {
             "title" => item["title"],
+            "expanded" => item["expanded"],
             "items" => map_items(item["items"], &block)
           }
         else
