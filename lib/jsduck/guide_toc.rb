@@ -16,10 +16,15 @@ module JsDuck
           tag = $1
           text = Util::HTML.strip_tags($2)
           id = guide_name + "-section-" + title_to_id(text)
-          if tag == "h2"
-            toc << "<li><a href='#!/guide/#{id}'>#{text}</a></li>\n"
-          end
+
           new_html << "<#{tag} id='#{id}'>#{text}</#{tag}>\n"
+
+          if tag =~ /^h([2-4])$/
+            toc.push({
+              :title => "<a href='#!/guide/#{id}'>#{text}</a>",
+              :level => $1.to_i - 2
+            })
+          end
         else
           new_html << line
         end
@@ -31,7 +36,7 @@ module JsDuck
             "<div class='toc'>\n",
             "<p><strong>Contents</strong></p>\n",
             "<ol>\n",
-            toc,
+            toc_to_html_list(toc),
             "</ol>\n",
             "</div>\n",
         ])
@@ -42,6 +47,32 @@ module JsDuck
 
     def self.title_to_id(title)
       CGI::escape(title.downcase.gsub(/ /, "-"))
+    end
+
+    def self.toc_to_html_list(toc)
+      html = ["<li>"]
+      prev_level = 0
+
+      toc.each.with_index do |item, i|
+        if prev_level < item[:level]
+          html << ("<ol>\n<li>\n" * (item[:level] - prev_level))
+        elsif prev_level > item[:level]
+          html << ("</li>\n</ol>\n<li>\n" * (prev_level - item[:level]))
+        elsif i > 0
+          html << "</li>\n<li>\n"
+        end
+
+        html << item[:title]
+
+        prev_level = item[:level]
+      end
+
+      html << "</li>"
+      if prev_level > 0
+        html << ("</ol>" * prev_level)
+      end
+
+      return html
     end
 
   end
