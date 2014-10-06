@@ -49,6 +49,15 @@ Read the instructions in the [`ckeditor-docs`](https://github.com/ckeditor/ckedi
 
 List of applied customizations:
 
+### 0.0.5
+
+1. Added support for `expanded` property of guides menu items.
+2. Implemented multi-level TOC in giudes.
+
+### 0.0.4
+
+1. Made sidebar wider.
+
 ### 0.0.3
 
 1. Fixed canonical URL for documentation loaded from CDN.
