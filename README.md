@@ -1,6 +1,6 @@
 # CKEditor JSDuck Gem
 
-This repository is used for storing CKEditor modifications for [JSDuck](https://github.com/senchalabs/jsduck), API documentation framework that is used for the developer documentation of CKEditor 4.
+This repository is used for storing CKEditor modifications for [JSDuck](https://github.com/senchalabs/jsduck), API documentation framework that is used for the [CKEditor 4 developer documentation](http://docs.ckeditor.com/).
 
 ## Repository
 
@@ -18,7 +18,7 @@ Full guide can be found in the [JSDuck wiki](https://github.com/ckeditor/jsduck/
 1. `> cd jsduck`
 1. `> git co stable`
 1. `> rake configure`
-1. `> rake ext4` (when executed for the first time gives a lot of warnings &mdash; you can repeat it)
+1. `> rake ext4` (it gives a lot of warnings when executed for the first time &mdash; you can repeat it)
 1. To generate the gem you first need to have a JSDuck-built documentation application available at `http://localhost/docs/`:
 
   `> ln -s path/to/jsduck/output docs` (from localhost's root)
@@ -51,8 +51,8 @@ List of applied customizations:
 
 ### 0.0.5
 
-1. Added support for `expanded` property of guides menu items.
-2. Implemented multi-level TOC in giudes.
+1. Added support for the `expanded` property of guides menu items.
+2. Implemented multi-level TOC in guides.
 
 ### 0.0.4
 
@@ -64,7 +64,7 @@ List of applied customizations:
 
 ### 0.0.2
 
-1. Introduced `--head-html-common` config option which makes possible to extend `<head>` of **all** templates.
+1. Introduced `--head-html-common` config option which makes it possible to extend the `<head>` of **all** templates.
 
 ### 0.0.1
 
