@@ -30,9 +30,13 @@ module JsDuck
         end
       end
 
+      new_html.flatten!
+      # Find index of the first heading
+      h1_index = new_html.flatten.index { |html_frag| html_frag =~ /<h1/ }
+
       # Inject TOC below first heading if at least 2 items in TOC
       if toc.length >= 2
-        new_html.insert(1, [
+        new_html.insert( h1_index ? h1_index + 1 : 0, [
             "<div class='toc'>\n",
             "<p><strong>Contents</strong></p>\n",
             "<ol>\n",
