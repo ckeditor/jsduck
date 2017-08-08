@@ -4,8 +4,25 @@ header("Access-Control-Allow-Credentials: true ");
 header("Access-Control-Allow-Methods: OPTIONS, GET, POST");
 header("Access-Control-Allow-Headers: Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control");
 
+function serverProtocol(){
+  $isSecure = false;
+  if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
+    $isSecure = true;
+  }
+  elseif (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on') {
+    $isSecure = true;
+  }
+  elseif (!empty($_SERVER['CLOUDFRONT_FORWARDED_PROTO']) && $_SERVER['CLOUDFRONT_FORWARDED_PROTO'] == 'https'){
+    $isSecure = true;
+  }
+  elseif (!empty($_SERVER['protossl']) && $_SERVER['protossl'] == 's'){
+    $isSecure = true;
+  }
+  return $isSecure ? 'https' : 'http';
+}
+
 function print_page($subtitle, $body, $fragment, $options = array()) {
-  $uri = 'http://' . str_replace("cdn-source.", "", $_SERVER["HTTP_HOST"]) . preg_replace('/\?.*$/', '', $_SERVER["REQUEST_URI"]);
+  $uri = serverProtocol().'://' . str_replace("cdn-source.", "", $_SERVER["HTTP_HOST"]) . preg_replace('/\?.*$/', '', $_SERVER["REQUEST_URI"]);
   $canonical = $uri."#!".htmlspecialchars($fragment, ENT_QUOTES, 'UTF-8');
   $html = file_get_contents('print-template.html');
   $meta = "";
@@ -143,4 +160,3 @@ if (isset($_GET["_escaped_fragment_"]) || isset($_GET["print"]) || isset($_GET["
 else {
   echo file_get_contents("template.html");
 }
-
