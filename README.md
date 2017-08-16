@@ -46,7 +46,7 @@ Read the instructions in the [`ckeditor-docs`](https://github.com/ckeditor/ckedi
   1. After making any changes, first commit code changes (this may be more than one commit), then bump the JSDuck version, build a new gem package, remove the old one from the repository and add the new one, then commit the rebuilt package.
 1. Testing:
 
-  For testing purposes you can use the script available in `bin/ckeditor-jsduck` instead of constantly installing the rebuilt gem package. You need to temporarily modify the [`build.sh`](https://github.com/ckeditor/ckeditor-docs/blob/master/build.sh) script from the CKEditor documentation repository to use this file.
+  For testing purposes you can use the script available in `bin/ckeditor-jsduck` instead of constantly installing the rebuilt gem package. You need to temporarily modify the [`gruntfile.js`](https://github.com/ckeditor/ckeditor-docs/blob/master/gruntfile.js#L51) script from the CKEditor documentation repository to use this file. The `cmd` should point to full path with `bin/ckeditor-jsduck` instead of `ckeditor-jsduck`.
 
   If you modified JSDuck templates, then you need to run rake tasks up to `rake gem` (excluding bumping up the version of course), otherwise `bin/ckeditor-jsduck` will still be using old minified templates.
 
