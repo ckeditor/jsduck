@@ -9,6 +9,10 @@ def os_is_windows?
   RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/
 end
 
+def os_is_osx?
+  RbConfig::CONFIG['host_os'] =~ /darwin|mac os/
+end
+
 require 'rspec'
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new(:spec) do |spec|
@@ -99,7 +103,7 @@ def compress
   # Clean up template-min/ left over from previous compress task
   system("rm", "-rf", "template-min")
   # Copy template/ files to template-min/
-  system("cp", "-r", "template", "template-min")
+  system("cp", os_is_osx? ? "-R" : "-r", "template", "template-min")
   # Now do everything that follows in template-min/ dir
   dir = "template-min"
 
@@ -194,10 +198,10 @@ end
 
 # Download ExtJS into template/extjs
 task :get_extjs do
-  system "curl -o template/extjs.zip http://cdn.sencha.com/ext-4.1.1a-gpl.zip"
+  system "curl -o template/extjs.zip https://ext4all.com/ext/download/ext-4.1.1-gpl.zip"
   system "unzip template/extjs.zip -d template/"
   system "rm -rf template/extjs"
-  system "mv template/ext-4.1.1a template/extjs"
+  system "mv template/extjs-4.1.1 template/extjs"
   system "rm template/extjs.zip"
 end
 
