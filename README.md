@@ -28,7 +28,7 @@ The `jsduck/output` directory should be available under `http://localhost/docs/`
 
   `> ln -s path/to/jsduck/output docs`
 
-9. `> rake bump["0.0.2"]` (update version number if you made any changes)
+11. `> rake bump["0.0.2"]` (update version number if you made any changes)
 1. `> rake gem`
 1. If you want to commit a new version, remove the old gem and add a new one to the repository.
 
@@ -39,9 +39,9 @@ Read the instructions in the [`ckeditor-docs`](https://github.com/ckeditor/ckedi
 ## Modifying JSDuck
 
 1. Rebuilding the gem package:
-  1. If you modified JSDuck version (merged upstream's `master`), make sure to run all `rake` tasks starting from `rake configure` in step 5 above.
+  1. If you modified JSDuck version (merged upstream's `master`), make sure to run all `rake` tasks starting from `rake configure` in step 8 above.
   1. If you only modified JSDuck code within a previously built version, it's enough to build the gem package, unless templates have been modified.
-1. Commiting changes:
+1. Committing changes:
   1. All code modifications should be done in the `ckeditor-customizations` branch, so that they would be easily reapplicable in the future.
   1. After making any changes, first commit code changes (this may be more than one commit), then bump the JSDuck version, build a new gem package, remove the old one from the repository and add the new one, then commit the rebuilt package.
 1. Testing:
