@@ -54,6 +54,10 @@ Read the instructions in the [`ckeditor-docs`](https://github.com/ckeditor/ckedi
 
 List of applied customizations:
 
+### 0.0.7
+
+1. HTTPS support.
+
 ### 0.0.6
 
 1. Fixed ToC injection when `<h1>` is not the first element of a guide (it may be preceded by a license comment).
