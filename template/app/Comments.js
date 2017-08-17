@@ -221,7 +221,7 @@ Ext.define('Docs.Comments', {
             var hash = '#!/api/' + cls + (member ? '-' + member : '');
         }
 
-        return "http://" + window.location.host + window.location.pathname + hash;
+        return window.location.protocol + "//" + window.location.host + window.location.pathname + hash;
     },
 
     /**
@@ -285,7 +285,7 @@ Ext.define('Docs.Comments', {
      */
     avatar: function(emailHash, cls) {
         return '<img class="avatar ' + (cls || "") + '" width="25" height="25" ' +
-               'src="http://www.gravatar.com/avatar/' + emailHash + '?s=25&amp;r=PG&amp;d=identicon">';
+               'src="https://www.gravatar.com/avatar/' + emailHash + '?s=25&amp;r=PG&amp;d=identicon">';
     },
 
     /**
