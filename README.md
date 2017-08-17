@@ -22,7 +22,6 @@ The most suitable version is `ruby 1.9.3`. You may use [RVM](https://rvm.io/) fo
 1. `> cd jsduck`
 1. `> git co stable`
 1. `> rake configure`
-<<<<<<< HEAD
 1. `> rake ext4` (it gives a lot of warnings when executed for the first time &mdash; you can repeat it)
 1. To generate the gem you first need to have a JSDuck-built documentation application available at `http://localhost/docs/`.
 The `jsduck/output` directory should be available under `http://localhost/docs/` so the easiest way is to run from localhost's root:
