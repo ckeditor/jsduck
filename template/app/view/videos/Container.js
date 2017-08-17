@@ -33,7 +33,7 @@ Ext.define('Docs.view.videos.Container', {
         this.video = video;
 
         this.tpl = this.tpl || new Ext.XTemplate(
-            '<iframe src="http://player.vimeo.com/video/{id}" width="640" height="360" frameborder="0" ',
+            '<iframe src="https://player.vimeo.com/video/{id}" width="640" height="360" frameborder="0" ',
                 'webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>',
             '<h1>{title}</h1>',
             '<p>{[this.linkify(values.description)]}</p>',
