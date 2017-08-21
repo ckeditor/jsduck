@@ -16,7 +16,9 @@ The most suitable version is `ruby 1.9.3`. You may use [RVM](https://rvm.io/) fo
 
 1. Install [Sencha SDK Tools](https://github.com/Shereef/Sencha-Touch-2) for your OS.
 1. `> sudo gem install rake rspec json rdiscount parallel dimensions rkelly-remix`
-1. `> sudo gem install sass -v 3.1.1`
+1. Install `sass` gem:
+    * `> sudo gem install sass -v 3.1.18` (for ruby version >= 2)
+    * `> sudo gem install sass -v 3.1.1` (for ruby version < 2)
 1. `> sudo gem install compass -v 0.12.2`
 1. `> git clone git@github.com:ckeditor/jsduck.git`
 1. `> cd jsduck`
