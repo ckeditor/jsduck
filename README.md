@@ -54,6 +54,10 @@ Read the instructions in the [`ckeditor-docs`](https://github.com/ckeditor/ckedi
 
 List of applied customizations:
 
+### 0.0.8
+
+1. Updated `parallel` gem dependency to `1.12.0` version.
+
 ### 0.0.7
 
 1. HTTPS support.
