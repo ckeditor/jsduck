@@ -23,14 +23,14 @@ function serverProtocol(){
 
 function print_page($subtitle, $body, $fragment, $options = array()) {
   $uri = serverProtocol().'://' . str_replace("cdn-source.", "", $_SERVER["HTTP_HOST"]) . preg_replace('/\?.*$/', '', $_SERVER["REQUEST_URI"]);
-  $canonical = $uri."#!".$fragment;
+  $canonical = $uri."#!".htmlspecialchars($fragment, ENT_QUOTES, 'UTF-8');
   $html = file_get_contents('print-template.html');
   $meta = "";
   if (!empty($options['meta_description'])) {
-    $meta .= '<meta name="description" property="og:description" content="'.htmlspecialchars($options['meta_description']).'" />';
+    $meta .= '<meta name="description" property="og:description" content="'.htmlspecialchars($options['meta_description'], ENT_QUOTES, 'UTF-8').'" />';
   }
   if (!empty($options['meta_keywords'])) {
-    $meta .= ($meta ? "\n" : "").'<meta name="keywords" content="'.htmlspecialchars($options['meta_keywords']).'" />';
+    $meta .= ($meta ? "\n" : "").'<meta name="keywords" content="'.htmlspecialchars($options['meta_keywords'], ENT_QUOTES, 'UTF-8').'" />';
   }
 
   echo preg_replace(array('/\{subtitle}/', '/\{body}/', '/\{canonical}/', '/\{meta}/'), array($subtitle, fix_links($body), $canonical, $meta), $html);
@@ -51,7 +51,7 @@ function decode_file($filename) {
     return jsonp_decode(file_get_contents($filename));
   }
   else {
-    throw new Exception("File ".htmlspecialchars($filename)." not found");
+    throw new Exception("File <code>".htmlspecialchars($filename, ENT_QUOTES, 'UTF-8')."</code> not found");
   }
 }
 
@@ -119,6 +119,8 @@ if (isset($_GET["_escaped_fragment_"]) || isset($_GET["print"]) || isset($_GET["
     $fragment = "";
   }
 
+  $fragment = strip_tags($fragment);
+
   try {
     if (preg_match('/^\/api\/([^-]+)/', $fragment, $m)) {
       $className = $m[1];
@@ -158,3 +160,4 @@ if (isset($_GET["_escaped_fragment_"]) || isset($_GET["print"]) || isset($_GET["
 else {
   echo file_get_contents("template.html");
 }
+
