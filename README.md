@@ -59,6 +59,9 @@ List of applied customizations:
 ### 0.0.3
 
 1. Fixed canonical URL for documentation loaded from CDN.
+2. HTTPS support.
+3. Updated `parallel` gem dependency to `1.12.0` version.
+4. Fix possible XSS in template `index.php` file. Reported by Bruno da Silva aka ipsbruno.
 
 ### 0.0.2
 
