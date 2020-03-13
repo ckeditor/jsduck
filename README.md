@@ -56,6 +56,10 @@ Read the instructions in the [`ckeditor-docs`](https://github.com/ckeditor/ckedi
 
 List of applied customizations:
 
+### 0.0.9
+
+1. Fix possible XSS in template `index.php` file. Reported by Bruno da Silva aka ipsbruno.
+
 ### 0.0.8
 
 1. Updated `parallel` gem dependency to `1.12.0` version.

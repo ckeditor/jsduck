@@ -1,5 +1,5 @@
 # This file is updated by rake bump task.
 # Do not edit by hand.
 module JsDuck
-  VERSION = "0.0.8"
+  VERSION = "0.0.9"
 end
